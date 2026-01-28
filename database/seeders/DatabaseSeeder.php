@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // Create Admin User
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'email' => 'admin@apotek.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
         ]);
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         // Create Apoteker User
         User::create([
             'name' => 'Apoteker',
-            'email' => 'apoteker@example.com',
+            'email' => 'apoteker@apotek.com',
             'password' => Hash::make('password'),
             'role' => 'apoteker',
         ]);
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // Create Customer User
         User::create([
             'name' => 'Customer',
-            'email' => 'customer@example.com',
+            'email' => 'customer@apotek.com',
             'password' => Hash::make('password'),
             'role' => 'customer',
         ]);
