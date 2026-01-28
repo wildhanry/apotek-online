@@ -44,6 +44,10 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'prescription_image' => 'nullable|image|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+
         $cart = session()->get('cart', []);
 
         if (empty($cart)) {
@@ -58,11 +62,18 @@ class OrderController extends Controller
                 $total += $item['price'] * $item['quantity'];
             }
 
+            // Handle prescription image upload
+            $prescriptionPath = null;
+            if ($request->hasFile('prescription_image')) {
+                $prescriptionPath = $request->file('prescription_image')->store('prescriptions', 'public');
+            }
+
             // Create order
             $order = Order::create([
                 'user_id' => auth()->id(),
                 'total_price' => $total,
                 'status' => 'pending',
+                'prescription_image' => $prescriptionPath,
             ]);
 
             // Create order items and update stock

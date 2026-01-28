@@ -66,8 +66,30 @@
                     </div>
                 </div>
 
-                <form action="{{ route('orders.store') }}" method="POST">
+                <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <!-- Prescription Upload -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Upload Resep Dokter (Opsional)
+                        </label>
+                        <input type="file" 
+                               name="prescription_image" 
+                               accept="image/jpeg,image/png,image/jpg,application/pdf"
+                               class="block w-full text-sm text-gray-500
+                                      file:mr-4 file:py-2 file:px-4
+                                      file:rounded-md file:border-0
+                                      file:text-sm file:font-semibold
+                                      file:bg-green-50 file:text-green-700
+                                      hover:file:bg-green-100
+                                      cursor-pointer">
+                        @error('prescription_image')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <p class="mt-1 text-xs text-gray-500">Format: JPG, PNG, PDF (Max 2MB)</p>
+                    </div>
+                    
                     <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-md transition duration-150 mb-3">
                         Konfirmasi Pesanan
                     </button>

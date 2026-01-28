@@ -88,10 +88,61 @@
                 </div>
             </div>
 
+            <!-- Prescription Image Section -->
+            @if($order->prescription_image)
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-3">Resep Dokter</h2>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <img src="{{ asset('storage/' . $order->prescription_image) }}" 
+                             alt="Resep Dokter" 
+                             class="max-w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-90 transition"
+                             onclick="window.open(this.src, '_blank')">
+                        <p class="mt-2 text-sm text-gray-600">Klik gambar untuk memperbesar</p>
+                    </div>
+                </div>
+            @endif
+
             <!-- Admin/Apoteker Actions -->
             @if(auth()->user()->role === 'admin' || auth()->user()->role === 'apoteker')
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-3">Ubah Status Pesanan</h2>
+                    <h2 class="text-lg font-semibold text-gray-900 mb-3">
+                        @if($order->prescription_image && $order->status === 'pending')
+                            Validasi Resep
+                        @else
+                            Ubah Status Pesanan
+                        @endif
+                    </h2>
+                    
+                    @if($order->prescription_image && $order->status === 'pending')
+                        <!-- Quick Prescription Validation Buttons -->
+                        <div class="flex space-x-3 mb-4">
+                            <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="flex-1">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="status" value="processing">
+                                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-md transition duration-150 flex items-center justify-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Terima Resep
+                                </button>
+                            </form>
+                            <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="flex-1">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="status" value="cancelled">
+                                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-md transition duration-150 flex items-center justify-center"
+                                        onclick="return confirm('Yakin ingin menolak resep ini?')">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                    Tolak Resep
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                    
+                    <!-- Manual Status Update Form -->
                     <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="flex space-x-2">
                         @csrf
                         @method('PATCH')
@@ -101,7 +152,7 @@
                             <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Completed</option>
                             <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                         </select>
-                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-md transition duration-150">
+                        <button type="submit" class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-6 rounded-md transition duration-150">
                             Update Status
                         </button>
                     </form>

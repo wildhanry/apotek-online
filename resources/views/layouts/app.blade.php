@@ -50,5 +50,10 @@
 
             @include('layouts.footer')
         </div>
+
+        <!-- Chatbot Widget (only for authenticated users) -->
+        @auth
+            @include('components.chatbot')
+        @endauth
     </body>
 </html>

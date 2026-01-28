@@ -1,101 +1,115 @@
-# Sistem Apotek Online (Simple Online Pharmacy System)
+# 🏥 Sistem Apotek Online
 
-![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=flat&logo=laravel&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat&logo=mysql&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-red.svg)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC.svg)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A comprehensive online pharmacy management system built with Laravel 11, featuring role-based access control for Admin, Pharmacist (Apoteker), and Customer roles. This project was developed as a university assignment to demonstrate modern web development practices.
+Aplikasi manajemen apotek online berbasis web yang dibangun dengan Laravel 11, dilengkapi dengan AI Chatbot powered by Google Gemini untuk memberikan rekomendasi obat dan panduan kesehatan.
 
-## 📸 Screenshots
+---
 
-### Customer Interface
-- Browse products with search and filter functionality
-- Shopping cart with quantity management
-- Order checkout and history tracking
+## 📋 Daftar Isi
 
-### Admin Dashboard
-- Complete product management (Create, Read, Update, Delete)
-- Order monitoring and status updates
-- Stock management and analytics
+- [Fitur Utama](#-fitur-utama)
+- [Teknologi](#-teknologi-yang-digunakan)
+- [Prasyarat](#-prasyarat)
+- [Instalasi](#-instalasi)
+- [Konfigurasi](#-konfigurasi)
+- [Struktur Database](#-struktur-database)
+- [Role & Hak Akses](#-role--hak-akses)
+- [Fitur AI Chatbot](#-fitur-ai-chatbot)
+- [Screenshot](#-screenshot)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Kontribusi](#-kontribusi)
+- [Lisensi](#-lisensi)
 
-### Pharmacist Dashboard
-- Order processing and fulfillment
-- Status updates for customer orders
-- Low stock alerts
+---
 
-## 🚀 Features
+## ✨ Fitur Utama
 
-### For Customers
-- 🛍️ Browse product catalog with search and filter
-- 🛒 Add products to shopping cart with quantity control
-- 💳 Secure checkout process
-- 📦 View order history and real-time status tracking
-- 👤 User profile management
-- 📊 Personalized dashboard
+### 🛒 Untuk Pelanggan
+- **Katalog Obat**: Browse produk dengan search dan filter kategori
+- **Keranjang Belanja**: Add to cart dengan update quantity real-time
+- **Upload Resep**: Upload foto resep dokter saat checkout
+- **Riwayat Pesanan**: Track status pesanan (Pending → Processing → Completed)
+- **AI Chatbot**: Asisten apoteker pintar untuk rekomendasi OTC dan FAQ
 
-### For Pharmacists (Apoteker)
-- 📋 Manage order processing workflow
-- ✅ Update order status (Pending → Processing → Completed → Cancelled)
-- 📉 Monitor low stock products
-- 🔔 View pending orders requiring attention
-- 📈 Order statistics and metrics
+### 💊 Untuk Apoteker
+- **Validasi Resep**: Review dan approve/reject resep yang diupload pelanggan
+- **Manajemen Pesanan**: Update status pesanan dan monitoring
+- **Dashboard Statistik**: Pesanan pending, processing, completed hari ini
+- **Alert Stok Rendah**: Notifikasi produk yang stoknya menipis
 
-### For Administrators
-- ⚙️ Complete product management (CRUD operations)
-- 📦 Order management and monitoring
-- 👥 User role management
-- 📊 System statistics and analytics
-- 🏷️ Product category management
-- 📸 Product image upload and management
-- ⚠️ Stock monitoring and alerts
+### 🔐 Untuk Admin
+- **CRUD Produk**: Create, Read, Update, Delete obat-obatan
+- **Manajemen Pengguna**: Monitoring dan kontrol user
+- **Dashboard Analytics**: Total revenue, orders, customers, low stock products
+- **Laporan Penjualan**: Riwayat transaksi lengkap dengan detail
 
-## 🛠️ Tech Stack
+---
 
-- **Backend**: PHP 8.2+ with Laravel 11
-- **Database**: MySQL 8.0
-- **Authentication**: Laravel Breeze (Blade Stack)
-- **Frontend**: 
-  - Blade Templates
-  - Tailwind CSS 3.0
-  - Alpine.js for interactivity
-- **Icons**: Heroicons (SVG)
-- **Asset Bundling**: Vite
+## 🚀 Teknologi yang Digunakan
 
-## 📦 Installation
+| Kategori | Teknologi |
+|----------|-----------|
+| **Backend** | Laravel 11, PHP 8.2+ |
+| **Frontend** | Blade Templates, Tailwind CSS 3.0, Alpine.js |
+| **Database** | MySQL 8.0 |
+| **Authentication** | Laravel Breeze (Session-based) |
+| **AI Integration** | Google Gemini API 2.5-flash (Free Tier) |
+| **Asset Bundling** | Vite |
+| **Version Control** | Git |
 
-### Prerequisites
-- PHP 8.2 or higher
-- Composer
-- Node.js & npm
-- MySQL 8.0 or higher
-- Git
+---
 
-### Step-by-Step Installation
+## 📦 Prasyarat
 
-1. **Clone the repository**
+Pastikan sistem Anda telah terinstal:
+
+- **PHP** >= 8.2
+- **Composer** >= 2.0
+- **Node.js** >= 20.x & npm >= 10.x
+- **MySQL** >= 8.0
+- **Git**
+
+---
+
+## 🔧 Instalasi
+
+### 1. Clone Repository
+
 ```bash
 git clone https://github.com/wildhanry/apotek-online.git
 cd apotek-online
 ```
 
-2. **Install PHP dependencies**
-```bash
-composer install
-```
+### 2. Install Dependencies
 
-3. **Install Node.js dependencies**
 ```bash
+# Install PHP dependencies
+composer install
+
+# Install JavaScript dependencies
 npm install
 ```
 
-4. **Environment setup**
+### 3. Setup Environment
+
 ```bash
+# Copy file .env
 cp .env.example .env
+
+# Generate application key
 php artisan key:generate
 ```
 
-5. **Configure database in `.env`**
+### 4. Konfigurasi Database
+
+Edit file `.env`:
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -105,248 +119,403 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-6. **Create database**
+Buat database:
+
 ```bash
-# MySQL command line or phpMyAdmin
+mysql -u root -p
 CREATE DATABASE apotek;
+exit;
 ```
 
-7. **Run migrations and seeders**
+### 5. Migrasi & Seeding
+
 ```bash
-php artisan migrate:fresh --seed
+# Run migrations
+php artisan migrate
+
+# Seed database dengan sample data
+php artisan db:seed
 ```
 
-8. **Create storage link**
+**Default Users:**
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@apotek.com | password |
+| Apoteker | apoteker@apotek.com | password |
+| Customer | customer@apotek.com | password |
+
+### 6. Setup Storage
+
 ```bash
 php artisan storage:link
 ```
 
-9. **Build frontend assets**
+### 7. Build Assets
+
 ```bash
 npm run build
-# Or for development with hot reload:
-npm run dev
 ```
 
-10. **Start development server**
+### 8. Jalankan Server
+
 ```bash
 php artisan serve
 ```
 
-Visit `http://127.0.0.1:8000` in your browser.
+Akses aplikasi di: **http://localhost:8000**
 
-## 👥 Default Users
+---
 
-After running the seeder, you can login with these credentials:
+## ⚙️ Konfigurasi
 
-| Role | Email | Password | Access Level |
-|------|-------|----------|--------------|
-| Admin | admin@example.com | password | Full system access |
-| Apoteker | apoteker@example.com | password | Order & stock management |
-| Customer | customer@example.com | password | Shopping & order tracking |
+### Google Gemini API (AI Chatbot)
 
-## 📁 Project Structure
+1. Dapatkan API Key gratis di: https://makersuite.google.com/app/apikey
+2. Tambahkan ke `.env`:
 
-```
-apotek-online/
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   ├── Auth/                    # Authentication controllers
-│   │   │   ├── ProductController.php    # Product CRUD
-│   │   │   ├── CartController.php       # Shopping cart logic
-│   │   │   ├── OrderController.php      # Order processing
-│   │   │   ├── DashboardController.php  # Role-based dashboards
-│   │   │   └── ProfileController.php    # User profile
-│   │   ├── Middleware/
-│   │   │   └── RoleMiddleware.php       # Role-based access control
-│   │   └── Requests/
-│   │       └── Auth/                    # Form validation requests
-│   └── Models/
-│       ├── User.php                     # User with roles
-│       ├── Product.php                  # Product catalog
-│       ├── Order.php                    # Order headers
-│       └── OrderItem.php                # Order line items
-│
-├── database/
-│   ├── migrations/
-│   │   ├── create_users_table.php       # Users with role column
-│   │   ├── create_products_table.php    # Product catalog
-│   │   ├── create_orders_table.php      # Order headers
-│   │   └── create_order_items_table.php # Order details
-│   └── seeders/
-│       └── DatabaseSeeder.php           # Sample data
-│
-├── resources/
-│   ├── css/
-│   │   └── app.css                      # Tailwind CSS + custom styles
-│   ├── js/
-│   │   ├── app.js                       # Alpine.js initialization
-│   │   └── bootstrap.js                 # Axios setup
-│   └── views/
-│       ├── layouts/
-│       │   ├── app.blade.php            # Main layout
-│       │   ├── navigation.blade.php     # Navigation bar
-│       │   └── guest.blade.php          # Guest layout
-│       ├── auth/                        # Login, Register
-│       ├── products/                    # Product views
-│       ├── cart/                        # Shopping cart
-│       ├── orders/                      # Order management
-│       ├── dashboard/                   # Role dashboards
-│       └── admin/                       # Admin panels
-│
-├── routes/
-│   ├── web.php                          # Application routes
-│   └── auth.php                         # Authentication routes
-│
-├── public/
-│   ├── storage/                         # Symlink to storage/app/public
-│   └── build/                           # Compiled assets
-│
-└── storage/
-    └── app/
-        └── public/                      # Public file uploads
-            └── products/                # Product images
+```env
+GEMINI_API_KEY=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-## 🗄️ Database Schema
+3. Clear config cache:
 
-### Users Table
-- id, name, email, password
-- **role** (enum: 'admin', 'apoteker', 'customer')
-- timestamps
-
-### Products Table
-- id, name, slug, category, price, stock, description, image
-- timestamps
-
-### Orders Table
-- id, user_id (FK), total_price
-- **status** (enum: 'pending', 'processing', 'completed', 'cancelled')
-- timestamps
-
-### Order Items Table
-- id, order_id (FK), product_id (FK), quantity, price
-- timestamps
-
-## 🔐 Role-Based Access Control
-
-### Middleware Implementation
-```php
-// Protect routes with role middleware
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('admin/products', ProductController::class);
-});
-
-Route::middleware(['auth', 'role:admin,apoteker'])->group(function () {
-    Route::get('admin/orders', [OrderController::class, 'adminIndex']);
-});
+```bash
+php artisan config:clear
 ```
 
-### Roles & Permissions
+### File Upload Configuration
 
-| Feature | Admin | Apoteker | Customer |
-|---------|-------|----------|----------|
-| View Products | ✅ | ✅ | ✅ |
-| Manage Products | ✅ | ❌ | ❌ |
-| View All Orders | ✅ | ✅ | Own Only |
-| Update Order Status | ✅ | ✅ | ❌ |
-| Place Orders | ✅ | ✅ | ✅ |
-| Manage Users | ✅ | ❌ | ❌ |
+Edit `php.ini` jika perlu upload file lebih besar:
 
-## 🎨 UI/UX Features
+```ini
+upload_max_filesize = 2M
+post_max_size = 2M
+```
 
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Interactive Components**: Alpine.js for dropdown menus and modals
-- **Clean Interface**: Professional pharmacy-themed design
-- **User Feedback**: Toast notifications and form validation
-- **Accessibility**: Semantic HTML and ARIA labels
+---
+
+## 🗄️ Struktur Database
+
+### Tabel Utama
+
+#### `users`
+| Field | Type | Description |
+|-------|------|-------------|
+| id | bigint | Primary Key |
+| name | varchar(255) | Nama user |
+| email | varchar(255) | Email (unique) |
+| password | varchar(255) | Hashed password |
+| role | enum | 'admin', 'apoteker', 'customer' |
+| created_at | timestamp | Waktu registrasi |
+
+#### `products`
+| Field | Type | Description |
+|-------|------|-------------|
+| id | bigint | Primary Key |
+| name | varchar(255) | Nama obat |
+| slug | varchar(255) | URL-friendly name |
+| category | varchar(255) | Kategori obat |
+| price | integer | Harga (Rupiah) |
+| stock | integer | Jumlah stok |
+| description | text | Deskripsi produk |
+| image | varchar(255) | Path gambar |
+
+#### `orders`
+| Field | Type | Description |
+|-------|------|-------------|
+| id | bigint | Primary Key |
+| user_id | bigint | FK → users |
+| total_price | integer | Total harga |
+| status | enum | 'pending', 'processing', 'completed', 'cancelled' |
+| prescription_image | varchar(255) | Path resep (nullable) |
+| created_at | timestamp | Waktu pemesanan |
+
+#### `order_items`
+| Field | Type | Description |
+|-------|------|-------------|
+| id | bigint | Primary Key |
+| order_id | bigint | FK → orders |
+| product_id | bigint | FK → products |
+| quantity | integer | Jumlah |
+| price | integer | Harga per item |
+
+### Relasi Database
+
+```
+users (1) ──→ (N) orders
+orders (1) ──→ (N) order_items
+products (1) ──→ (N) order_items
+```
+
+---
+
+## 👥 Role & Hak Akses
+
+### Admin
+✅ Full access ke semua fitur  
+✅ CRUD produk  
+✅ View semua pesanan & users  
+✅ Dashboard analytics lengkap  
+
+### Apoteker
+✅ View & update status pesanan  
+✅ Validasi resep (approve/reject)  
+✅ Dashboard monitoring pesanan  
+✅ Alert stok rendah  
+❌ Tidak bisa CRUD produk  
+
+### Customer
+✅ Browse & search produk  
+✅ Keranjang belanja & checkout  
+✅ Upload resep dokter  
+✅ Track status pesanan  
+✅ Akses AI chatbot  
+❌ Tidak bisa akses admin panel  
+
+**Middleware:** `RoleMiddleware.php` - Route protection berdasarkan role
+
+---
+
+## 🤖 Fitur AI Chatbot
+
+### Kemampuan Chatbot
+
+1. **Rekomendasi OTC (Over-the-Counter)**
+   - Deteksi gejala ringan: flu, sakit kepala, demam, batuk
+   - Rekomendasi produk dari database real-time
+   - Informasi harga dan stok
+
+2. **Panduan Resep Dokter**
+   - Cara upload resep saat checkout
+   - Proses validasi apoteker
+
+3. **Order Tracking**
+   - Panduan cek status pesanan
+   - Arahkan ke menu "Riwayat Pesanan"
+
+4. **FAQ**
+   - Jam operasional: 08:00 - 22:00 WIB
+   - Pertanyaan umum tentang apotek
+
+### Teknologi
+
+- **Model:** Google Gemini 2.5-flash (Free Tier)
+- **Context:** Dynamic product database injection
+- **UI:** WhatsApp-style floating chat widget
+- **Framework:** Alpine.js for interactivity
+
+### Contoh Interaksi
+
+```
+User: "Saya sakit kepala, obat apa yang cocok?"
+
+AI: "Untuk sakit kepala, saya rekomendasikan:
+
+💊 Paracetamol 500mg - Rp 5.000
+   Efektif meredakan sakit kepala dan demam.
+   Stok tersedia: 100 unit
+
+Konsumsi sesuai dosis dan jangan melebihi 3x sehari. 
+Jika sakit berlanjut, segera konsultasi dokter. 😊"
+```
+
+---
+
+## 📸 Screenshot
+
+### Customer View
+- Katalog Produk
+- Detail Produk & Add to Cart
+- Checkout dengan Upload Resep
+- Riwayat Pesanan
+- AI Chatbot Interface
+
+### Admin Dashboard
+- Stats Cards (Products, Orders, Revenue)
+- Recent Orders Table
+- Low Stock Alerts
+- Manage Products (CRUD)
+
+### Apoteker Panel
+- Pending Orders
+- Prescription Validation
+- Order Status Update
+
+---
 
 ## 🧪 Testing
 
-```bash
-# Run all tests
-php artisan test
+### Manual Testing Checklist
 
-# Run specific test suite
-php artisan test --testsuite=Feature
-php artisan test --testsuite=Unit
+**Authentication:**
+```bash
+✅ Register new user
+✅ Login/Logout
+✅ Update profile
 ```
 
-## 🚀 Deployment
+**Product Management (Admin):**
+```bash
+✅ Create product with image
+✅ Update product details
+✅ Delete product
+✅ Search & filter products
+```
 
-### Production Setup
+**Ordering Flow (Customer):**
+```bash
+✅ Add product to cart
+✅ Update cart quantity
+✅ Checkout dengan resep
+✅ Checkout tanpa resep
+✅ View order history
+```
 
-1. Set environment to production in `.env`:
-```env
+**Prescription Validation (Apoteker):**
+```bash
+✅ View uploaded prescription
+✅ Approve prescription (status → processing)
+✅ Reject prescription (status → cancelled)
+```
+
+**AI Chatbot:**
+```bash
+✅ Ask OTC recommendation
+✅ Ask prescription guide
+✅ Ask order tracking
+✅ Ask FAQ
+✅ Test markdown removal
+```
+
+### Test Credentials
+
+```bash
+# Run seeder untuk test data
+php artisan db:seed
+
+# Test users sudah tersedia:
+# admin@apotek.com / password
+# apoteker@apotek.com / password
+# customer@apotek.com / password
+```
+
+---
+
+## 🌐 Deployment
+
+### Production Checklist
+
+1. **Environment:**
+```bash
 APP_ENV=production
 APP_DEBUG=false
 ```
 
-2. Optimize Laravel:
+2. **Database:**
+```bash
+php artisan migrate --force
+php artisan db:seed --force
+```
+
+3. **Optimization:**
 ```bash
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-```
-
-3. Build production assets:
-```bash
+composer install --optimize-autoloader --no-dev
 npm run build
 ```
 
-4. Set proper file permissions:
+4. **Permissions:**
 ```bash
 chmod -R 775 storage bootstrap/cache
+chown -R www-data:www-data storage bootstrap/cache
 ```
 
-## 🎓 University Project
+5. **SSL:**
+   - Install SSL certificate (Let's Encrypt)
+   - Force HTTPS di `.env`: `APP_URL=https://yourdomain.com`
 
-This project was developed as a university assignment to demonstrate:
-- ✅ Laravel framework proficiency and best practices
-- ✅ MVC architecture implementation
-- ✅ Database design with proper relationships
-- ✅ Role-based access control (RBAC)
-- ✅ E-commerce functionality (cart, checkout, orders)
-- ✅ Modern UI/UX design with Tailwind CSS
-- ✅ RESTful API principles
-- ✅ Security best practices (CSRF, password hashing, authorization)
+### Server Requirements
 
-## 📚 Key Learning Outcomes
-
-- Building full-stack web applications with Laravel
-- Implementing authentication and authorization
-- Database design and Eloquent ORM
-- Frontend development with Blade and Tailwind CSS
-- Version control with Git
-- Project documentation and deployment
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is open-sourced for educational purposes under the MIT License.
-
-## 👨‍💻 Author
-
-**Wildhan RY**
-- GitHub: [@wildhanry](https://github.com/wildhanry)
-
-## 🙏 Acknowledgments
-
-- Laravel framework and community
-- Tailwind CSS for the amazing utility-first CSS framework
-- Alpine.js for lightweight JavaScript interactivity
-- All contributors and supporters
+- **OS:** Linux (Ubuntu 22.04 LTS recommended)
+- **Web Server:** Nginx / Apache
+- **PHP:** 8.2+ dengan extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, OpenSSL, PDO, Tokenizer, XML
+- **Database:** MySQL 8.0 / MariaDB 10.3+
+- **Memory:** Minimum 512MB RAM
 
 ---
 
-**Made with ❤️ for educational purposes**
+## 🤝 Kontribusi
+
+Kontribusi sangat diterima! Silakan fork repository ini dan submit pull request.
+
+### Development Workflow
+
+1. Fork repository
+2. Create feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to branch: `git push origin feature/AmazingFeature`
+5. Open Pull Request
+
+### Coding Standards
+
+- Follow PSR-12 coding standard
+- Write descriptive commit messages
+- Add comments untuk complex logic
+- Test sebelum submit PR
+
+---
+
+## 📄 Lisensi
+
+Project ini menggunakan [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Developer
+
+**Wildan Hanry**  
+📧 Email: admin@apotek.com  
+🔗 GitHub: [@wildhanry](https://github.com/wildhanry)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Google Gemini AI](https://ai.google.dev)
+- [Alpine.js](https://alpinejs.dev)
+
+---
+
+## 📝 Changelog
+
+### Version 1.0.0 (January 2026)
+- ✅ Initial release
+- ✅ Complete CRUD operations
+- ✅ Role-based access control
+- ✅ AI Chatbot integration
+- ✅ Prescription upload system
+- ✅ Stock management
+- ✅ Dashboard analytics
+
+---
+
+## 🐛 Known Issues & Roadmap
+
+### Current Issues
+- None reported
+
+### Roadmap
+- [ ] Export reports to PDF/Excel
+- [ ] Email notifications
+- [ ] SMS notifications for order updates
+- [ ] Payment gateway integration
+- [ ] Multi-language support
+- [ ] Mobile app (Flutter)
+
+---
+
+**Made with ❤️ for UAS Final Exam**
