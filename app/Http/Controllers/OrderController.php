@@ -112,8 +112,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        // Check if user owns this order
-        if ($order->user_id !== auth()->id() && auth()->user()->role !== 'admin') {
+        // Check if user owns this order or is admin/apoteker
+        if ($order->user_id !== auth()->id() && !in_array(auth()->user()->role, ['admin', 'apoteker'])) {
             abort(403);
         }
 
